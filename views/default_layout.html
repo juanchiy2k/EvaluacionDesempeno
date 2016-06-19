@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% set title = textos.title %} {% trans title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ titulo }}" />
+    <meta name="author" content="Nicolás García Bauzá" />
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/default_layout.css">
+ <!--   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">-->
+
+    {% block extraCSS %} {% endblock %}
+    
+    
+
+    <!--<script type="text/javascript" src="js/jquery/jquery-1.9.1.js"></script>-->
+    <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <style type="text/css">
+        body{
+          padding: 100px;
+        }
+        footer{
+           /*padding: 100px;*/
+        }
+    </style>
+  </head>
+
+  <body>
+
+    {% block dialog %}{% endblock %}
+  
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <a href="#"><img src="images/pm.png"/></a>
+        {% block menuresponsivo %}{% endblock %}
+      </div>
+
+      {% block menu %} {% endblock %}
+      {% block language %} {% endblock %}
+
+      {% block barra %} {% endblock %}
+     
+    </nav>
+
+
+    <div class="container">
+  
+      {% block barraNavegacion %} {% endblock %}
+
+      {% block contenidos %} {% endblock %}
+
+      {% block loginUser %} {% endblock %}
+
+      {% block changePassword %} {% endblock %}
+
+      
+      {% block piePagina %} {% endblock%}
+
+    </div>
+
+     
+    {% block javascripts %} {% endblock %}
+  </body>
+</html>

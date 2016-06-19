@@ -1,0 +1,860 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: apps_multilenguaje_twig\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-24 12:27-0300\n"
+"PO-Revision-Date: 2014-06-24 14:07-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Bookmarks: -1,-1,77,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\rrhh\n"
+"X-Poedit-SearchPath-1: D:\\xampp\\htdocs\\rrhh\n"
+"X-Poedit-SearchPath-2: /var/www/rrhh\n"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:12
+msgid "MANAGEMENT AND PERFORMANCE EVALUATION"
+msgstr "GESTIÓN Y EVALUACIÓN DEL DESEMPEÑO"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:13
+msgid "Nicolas Garcia Bauza"
+msgstr "Nicolás García Bauzá"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:14
+msgid "Management and Performance Evaluation of HR"
+msgstr "Gestión y Evaluación del Desempeño de RRHH"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:15
+msgid "Home"
+msgstr "Inicio"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:16
+msgid "Planning"
+msgstr "Planificación"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:17
+msgid "Monitoring"
+msgstr "Seguimiento"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:18
+msgid "Evaluation"
+msgstr "Evaluación"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:19
+msgid "Click here to record your annual performance goals."
+msgstr "Ingrese aquí para registrar sus objetivos anuales de desempeño."
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:20
+msgid ""
+"Click here to track and update previously registered goals set at the "
+"beginning of the year."
+msgstr ""
+"Ingrese aquí para realizar seguimiento y actualización de los objetivos "
+"registrados establecidos a principios del año. "
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:21
+msgid "Click here to start the annual performance management process."
+msgstr ""
+"Ingrese aquí para iniciar el proceso anual de evaluación del desempeño."
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:22
+msgid "Select"
+msgstr "Seleccionar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:23
+msgid "PERSONAL INFORMATION"
+msgstr "INFORMACIÓN PERSONAL"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:24
+msgid "ANNUAL GOALS"
+msgstr "OBJETIVOS ANUALES"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:25
+msgid "SKILL BUILDING INFORMATION"
+msgstr "INFORMACIÓN PARA CAPACITACIÓN Y DESARROLLO"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:26
+msgid "IMPACT"
+msgstr "INCIDENCIA"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:27
+msgid "Country"
+msgstr "País"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:28
+msgid "Employee Number"
+msgstr "N° de Empleado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:29
+msgid "Search"
+msgstr "Buscar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:30
+msgid "Position"
+msgstr "Cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:31
+msgid "Surnames"
+msgstr "Apellidos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:32
+msgid "Names"
+msgstr "Nombres"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:33
+msgid "Name"
+msgstr "Nombre"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:34
+msgid "Area"
+msgstr "Área"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:35
+msgid "Office"
+msgstr "Oficina"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:36
+msgid "Seniority in the post"
+msgstr "Antigüedad en el Cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:37
+msgid "Lengh of Service in PM"
+msgstr "Antigüedad en PM"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:38
+msgid "Reports to"
+msgstr "Reporta a"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:39
+msgid "Direct Supervisor"
+msgstr "Supervisor Directo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:40
+msgid "Indirect Supervisor"
+msgstr "Supervisor Indirecto"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:41
+msgid "Planned Period"
+msgstr "Período Planificado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:42
+msgid "Next"
+msgstr "Continuar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:43
+msgid "Back"
+msgstr "Regresar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:44
+msgid ""
+"You have already completed a planning for this period. Would you like to "
+"modify it?"
+msgstr ""
+"Tiene una planificación para el peridodo seleccionado, ¿desea modificarla?"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:45
+msgid "Existing Planning"
+msgstr "Planificación Existente"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:46
+msgid "Objective / Project"
+msgstr "Objetivo / Proyecto"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:47
+msgid "Main Activities"
+msgstr "Actividades Principales"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:48
+msgid "Deadline"
+msgstr "Cronograma"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:49
+msgid "Goal"
+msgstr "Meta"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:50
+msgid "Relative Importance"
+msgstr "Peso Relativo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:51
+msgid "Up to"
+msgstr "máximo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:52
+msgid "Enter data"
+msgstr "Ingrese los datos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:53
+msgid "Click here to add another objective"
+msgstr "Presione aquí para agregar otro objetivo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:54
+msgid "Click here to delete this objective"
+msgstr "Presione aquí para eliminar este objetivo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:55
+msgid "You must enter at least 3 objectives"
+msgstr "Debe ingresar por lo menos 3 objetivos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:56
+msgid "Do not enter more than 7 objectives"
+msgstr "No debe ingresar más de 7 objetivos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:57
+msgid "You must enter a objective"
+msgstr "Debe ingresar un objetivo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:58
+msgid "You must enter an activity"
+msgstr "Debe ingresar una actividad"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:59
+msgid "You must enter a deadline"
+msgstr "Debe ingresar una fecha"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:60
+msgid "You must enter a correct date"
+msgstr "Debe ingresar una fecha correcta"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:61
+msgid "You must enter a goal"
+msgstr "Debe ingresar una meta"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:62
+msgid "You must enter a percentage"
+msgstr "Debe ingresar un peso"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:63
+msgid "You must enter a numeric value"
+msgstr "Debe ingresar un valor numérico"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:64
+msgid "The weight must not be less than"
+msgstr "El peso no debe ser menor a"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:65
+msgid "The weight should not exceed"
+msgstr "El peso no debe ser mayor a"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:66
+msgid "The total must be 100%"
+msgstr "El total debe ser el 100%"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:67
+msgid "You must enter a proposed activity"
+msgstr "Debe ingresar una actividad propuesta"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:68
+msgid "Skills and aspects ought to be strengthened"
+msgstr "Competencias y aspectos que necesita fortalecer"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:69
+msgid "Key attitudes ought to be strengthened"
+msgstr "Actitudes claves que se recomienda reforzar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:70
+msgid "Others commitments for the period"
+msgstr "Otros compromisos para el período"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:71
+msgid "According to this information HR Area will do the Annual Training Plan"
+msgstr ""
+"El Área de RR.HH. sistematizará esta información, y en base a la misma "
+"elaborará el Plan de Capacitación y Desarrollo Anual"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:72
+msgid "Click here to add another skill"
+msgstr "Presione aquí para agregar una competencia"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:73
+msgid "Click here to delete this skill"
+msgstr "Presione aquí para borrar esta competencia"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:74
+msgid "Evaluated Aspects"
+msgstr "Aspectos Evaluados"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:75
+msgid "Objectives for the Period"
+msgstr "Objetivos para el Período"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:76
+msgid "Leadership and Management"
+msgstr "Liderazgo y Gestión del Cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:77
+msgid "Save"
+msgstr "Guardar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:78
+msgid "Save & Send"
+msgstr "Guardar y Enviar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:79
+msgid "Print"
+msgstr "Imprimir"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:80
+msgid "PERFORMANCE PLANNING"
+msgstr "PLANIFICACIÓN DEL DESEMPEÑO"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:81
+msgid "PERIOD"
+msgstr "PERÍODO"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:82
+msgid "Performance Evaluation from"
+msgstr "Evaluación del Desempeño a"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:83
+msgid "Date Printing"
+msgstr "Fecha de Impresión"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:84
+msgid "Page"
+msgstr "Página"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:85
+msgid "Weight"
+msgstr "Peso"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:86
+msgid "OK"
+msgstr "Aceptar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:87
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:88
+msgid "Close"
+msgstr "Cerrar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:89
+msgid ""
+"Planning was successfully saved. An e-mail was sent to his hierarchical "
+"superior and/or functional"
+msgstr ""
+"La planificación fue guardada exitosamente. Se envió un e-mail a un superior "
+"jerárquico y/o funcional"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:90
+msgid ""
+"Dear, you received a management planning, attached in this mail will find "
+"such planning."
+msgstr ""
+"Estimado/a, Ud. recibió una planifcación para la gestión, adjunto en este "
+"correo encontrará dicha planificación."
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:91
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:92
+msgid "name.surname@promujer.org"
+msgstr "nombre.apellido@promujer.org"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:93
+msgid "Password"
+msgstr "Contraseña"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:94
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:95
+msgid "To generate a new password, please click here"
+msgstr "Para generar una nueva contraseña, por favor haga click aquí"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:96
+msgid "Welcome to Performance Management Tool"
+msgstr "Bienvenidos al Sistema de Gestión del Desempeño"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:97
+msgid "Enter your email address and password"
+msgstr ""
+"Para acceder a la herramienta ingrese su correo electrónico y contraseña"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:98
+msgid "Log in help"
+msgstr "Recuperación de contraseña"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:99
+msgid ""
+"If you forgot your password or do not have it yet, please enter your email "
+"address"
+msgstr ""
+"Si olvidaste tu contraseña o si aún no la tienes, por favor ingrese su "
+"dirección de correo electrónico"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:100
+msgid "Username or password incorrect"
+msgstr "Usuario o contraseña incorrectos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:101
+msgid "No matching email is found, please try again"
+msgstr ""
+"No se encontró un correo electrónico coincidente, intente de nuevo por favor"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:102
+msgid "Your password has been sent successfully"
+msgstr "Su contraseña se ha enviado exitosamente"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:103
+msgid "Log out"
+msgstr "Cerrar sesión"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:104
+msgid "Profile"
+msgstr "Perfil"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:105
+msgid "Type your email address"
+msgstr "Debe ingresar un email"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:106
+msgid "Type your email address correctly"
+msgstr "Debe ingresar un email válido"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:107
+msgid "New password"
+msgstr "Nueva contraseña"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:108
+msgid "Repeat new password"
+msgstr "Repita la nueva contraseña"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:109
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:110
+msgid "Passwords inputted are different"
+msgstr "Las contraseñas ingresadas son diferentes"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:111
+msgid "Required password"
+msgstr "Contraseña requerida"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:112
+msgid "Length password must be 6 digits"
+msgstr "La longitud de la contraseña debe ser de 6 dígitos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:113
+msgid "Passwords must be equal"
+msgstr "Las contraseñas deben ser iguales"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:114
+msgid "Password modified successfully"
+msgstr "La contraseña se modificó exitosamente"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:115
+msgid ""
+"The upper sections both Monitoring and Evaluation are under construction"
+msgstr ""
+"Las secciones de Seguimiento y Evaluación se encuentran en construcción."
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:116
+msgid "Password Recovery"
+msgstr "Recuperación de contraseña"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:117
+msgid ""
+"Your password has been changed. To access the tool enter the following data."
+msgstr ""
+"Su contraseña ha sido cambiada. A continuación le indicamos como acceder al "
+"sistema"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:118
+msgid "User's Data"
+msgstr "Datos del Usuario"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:119
+msgid "User"
+msgstr "Usuario"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:120
+msgid "Interface User"
+msgstr "Interfaz del Usuario"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:121
+msgid "Personal In Charge"
+msgstr "Personal a Cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:122
+msgid "Approve"
+msgstr "Aprobar"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:123
+msgid ""
+"You to approve this planning. Once approved can not be reversed. Would you "
+"approve?"
+msgstr ""
+"Ud. esta por aprobar esta planificación. Una vez aprobada no se podrá "
+"revertir. ¿Desea aprobarla?"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:124
+msgid "Approve Planning"
+msgstr "Aprobar Planificación"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:125
+msgid "Status"
+msgstr "Estado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:126
+msgid "Approval was successfully performed"
+msgstr "La aprobación se realizó exitosamente"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:127
+msgid "Registered"
+msgstr "Registrada"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:128
+msgid "Approved"
+msgstr "Aprobada"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:129
+msgid "Without Registration"
+msgstr "Sin Registro"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:130
+msgid "Performance Management"
+msgstr "Gestión del Desempeño"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:131
+msgid "Approval of performance evaluation of"
+msgstr "Aprobación de la Evaluación del Desempeño de"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:132
+msgid "Our website is under construction"
+msgstr "Nuestra página web está en construcción"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:133
+msgid "Coming Soon"
+msgstr "Proximamente"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:134
+msgid "Help"
+msgstr "Ayuda"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:135
+msgid "STATUS PLANNING"
+msgstr "ESTADO PLANIFICACION"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:136
+msgid "Employees"
+msgstr "Empleados"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:137
+msgid "Insert Employee"
+msgstr "Registrar Empleado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:138
+msgid "Date of Birth"
+msgstr "Fecha de Nacimiento"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:139
+msgid "Date of Admission"
+msgstr "Fecha de Ingreso"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:140
+msgid "Date of Position"
+msgstr "Fecha de Cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:141
+msgid "Type ID"
+msgstr "Tipo Identificador"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:142
+msgid "OTHER"
+msgstr "OTRO"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:143
+msgid "ID Number"
+msgstr "Número Identificador"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:144
+msgid "Group"
+msgstr "Grupo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:145
+msgid "USERS"
+msgstr "USUARIOS"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:146
+msgid "EDITORS"
+msgstr "EDITORES"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:147
+msgid "PLANNING"
+msgstr "PLANIFICACION"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:148
+msgid "Existing Personal"
+msgstr "Personal Existente"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:149
+msgid "New"
+msgstr "Nuevo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:150
+msgid "Addition of Personal"
+msgstr "Alta del Personal"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:151
+msgid "Deletion of Personal"
+msgstr "Baja del Personal"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:152
+msgid "Edition of Personal"
+msgstr "Edición del Personal"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:153
+msgid "Date of Deletion"
+msgstr "Fecha de Baja"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:154
+msgid "List of Personal"
+msgstr "Listado del Personal"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:155
+msgid "New Employee"
+msgstr "Nuevo Empleado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:156
+msgid "You must enter a name"
+msgstr "Debe ingresar un nombre"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:157
+msgid "You must enter a surname"
+msgstr "Debe ingresar un apellido"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:158
+msgid "You must enter a position"
+msgstr "Debe ingresar un cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:159
+msgid "You must enter a area"
+msgstr "Debe ingresar un área"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:160
+msgid "You must enter a office"
+msgstr "Debe ingresar una oficina"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:161
+msgid "You must enter a date of admission"
+msgstr "Debe ingresar una fecha de ingreso"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:162
+msgid "You must enter a date of position"
+msgstr "Debe ingresar una fecha de cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:163
+msgid "You must enter a date of deletion"
+msgstr "Debe ingresar una fecha de baja"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:164
+msgid "You must select a reason"
+msgstr "Debe ingresar un motivo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:165
+msgid "Data were successfully saved"
+msgstr "Los datos fueron grabados exitósamente"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:166
+msgid "Employee deleted"
+msgstr "Empleado eliminado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:167
+msgid "You must enter a valid email"
+msgstr "Debe ingresar un email válido"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:168
+msgid "You must enter only text"
+msgstr "Debe ingresar solo texto"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:169
+msgid "Select the Country"
+msgstr "Seleccione el País"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:170
+msgid "Select the Area"
+msgstr "Seleccione el Área"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:171
+msgid "Select the Position"
+msgstr "Seleccione el Cargo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:172
+msgid "Select the Regional"
+msgstr "Seleccione la Regional"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:173
+msgid "Select the Office"
+msgstr "Seleccione la Oficina"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:174
+msgid "Select the Reason"
+msgstr "Seleccione el Motivo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:175
+msgid "Reason"
+msgstr "Motivo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:176
+msgid "Update data of"
+msgstr "Actualizar datos de"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:177
+msgid "If you update the email, you will change the user of login"
+msgstr "Si actualiza el email, también se modificará el usuario de logueo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:178
+msgid "Dear"
+msgstr "Estimado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:179
+msgid "Their data were updated by the HR area. These data are detailed below"
+msgstr ""
+"Sus datos fueron actualizados por el área de RRHH. Dichos datos se detallan "
+"a continuación"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:180
+msgid ""
+"If such data is incorrect, please contact the HR department of your country"
+msgstr ""
+"Si dichos datos no son correctos, por favor contactarse con el área de RRHH "
+"de su país"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:181
+msgid "Administration"
+msgstr "Administración"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:182
+msgid "Reports"
+msgstr "Reportes"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:183
+msgid "State of Planning"
+msgstr "Estado de la Planificación"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:184
+msgid "Plannings"
+msgstr "Planificaciones"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:185
+msgid "State"
+msgstr "Estado"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:186
+msgid "Objective"
+msgstr "Objetivo"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:187
+msgid "Objectives"
+msgstr "Objetivos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:188
+msgid "Objectives Report"
+msgstr "Reporte de Objetivos"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:189
+msgid "Planning Objectives Report Of Performance"
+msgstr "Reporte de Objetivos de la Planificacion de desempeño"
+
+#: D:\xampp\htdocs\rrhh/locale/textos/text_layout.php:190
+msgid "Excel Report"
+msgstr "Reporte Excel"
+
+#~ msgid "Plannigs"
+#~ msgstr "Planificaciones"
+
+#~ msgid "Date"
+#~ msgstr "Fecha"
+
+#~ msgid "EDITING"
+#~ msgstr "EDITOR"
+
+#~ msgid "Logout"
+#~ msgstr "Cerrar sesión"
+
+#~ msgid "GOALS FOR PERIOD"
+#~ msgstr "OBJETIVOS PARA EL PERÍODO"
+
+#~ msgid "Seniority in"
+#~ msgstr "Antigüedad en el Cargo"
+
+#~ msgid "Relative Weight"
+#~ msgstr "Peso Relativo"
+
+#~ msgid "You must enter a chronogram"
+#~ msgstr "Debe ingresar un cronograma"
+
+#~ msgid ""
+#~ "The HR's field will collate this information, and based on the same "
+#~ "prepare the Annual Training Plan and Individual Development Evaluated."
+#~ msgstr ""
+#~ "El Área de RR.HH. sistematizará esta información, y en base a la misma "
+#~ "elaboraró el Plan de Capacitación y Desarrollo Anual de la Persona "
+#~ "Evaluada."
+
+#~ msgid "Chronogram"
+#~ msgstr "Cronograma"
+
+#~ msgid "maximum"
+#~ msgstr "máximo"
+
+#~ msgid "Reports Funcionally to"
+#~ msgstr "Reporta Funcionalmente a"
+
+#~ msgid "Field"
+#~ msgstr "Área"
+
+#~ msgid "PERSON'S DATA EVALUATED"
+#~ msgstr "DATOS DE LA PERSONA EVALUADA"
+
+#~ msgid "INFORMATION FOR CAPACITATION AND DEVELOPMENT"
+#~ msgstr "INFORMACIÓN PARA CAPACITACIÓN Y DESARROLLO"
+
+#~ msgid "INCIDENCE"
+#~ msgstr "INCIDENCIA"
+
+#~ msgid "Enter here to register for a given planning period."
+#~ msgstr ""
+#~ "Ingrese aquí para registrar una planificación para un período determido"
+
+#~ msgid "Enter here to register a registered monitoring plan."
+#~ msgstr ""
+#~ "Ingrese aquí para registrar el seguimiento de una planificación "
+#~ "registrada."
+
+#~ msgid "Enter here to complete the evaluation process of a registered plan."
+#~ msgstr ""
+#~ "Ingrese aqui para registrar el seguimiento de una planificacion "
+#~ "registrada."
+
+#~ msgid "To recover the password in the email needed to enter the logging."
+#~ msgstr ""
+#~ "Para recuperar la contraseña es necesario ingresar el correo electrónico "
+#~ "con el que incia sesión."
+
+#~ msgid "Forgot password?"
+#~ msgstr "¿Olvidaste tu contraseña?"
+
+#~ msgid "Welcome Pro Mujer HR"
+#~ msgstr "Bienvenidos a Pro Mujer RRHH"
+
+#~ msgid ""
+#~ "Upload your planning. HR will monitoring and finally will be done an "
+#~ "evaluation of its performance."
+#~ msgstr ""
+#~ "Cargue su planificación. RRHH le realizará un seguimiento y finalmente se "
+#~ "le realizará una evaluación de su rendimiento."

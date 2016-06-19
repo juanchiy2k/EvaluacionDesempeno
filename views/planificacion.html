@@ -1,0 +1,958 @@
+{% extends 'default_layout.html'%}
+
+{% block menuresponsivo %} 
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+</button>
+{% endblock %}
+
+{% block menu %}
+<div class="navbar-collapse collapse">
+  <ul class="nav navbar-nav">
+    <li><a href="index.php"><i class="glyphicon glyphicon-home"></i>{% set home = textos.home %} {% trans home %}</a></li>
+    <li><a href="planificacion.php"><i class="glyphicon glyphicon-signal"></i>{% set planning = textos.planning %} {% trans planning %}</a></li>
+    <li><a href="under_construction.php"><i class="glyphicon glyphicon-eye-open"></i>{% set monitoring = textos.monitoring %} {% trans monitoring %}</a></li>
+    <li><a href="under_construction.php"><i class="glyphicon glyphicon-thumbs-up"></i>{% set evaluation = textos.evaluation %} {% trans evaluation %}</a></li>
+    <li><a href="#" onClick="imprimirInstructivo($('#hdnLanguage').val());return false"><i class="glyphicon glyphicon-question-sign"></i>{% set help = textos.help %} {% trans help %}</a></li>
+    {% if perfil == 'EDITORES' %}
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-globe"></i>{% set administration = textos.administration %} {% trans administration %} <b class="caret"></b></a>
+      <ul class="dropdown-menu" id="menu1">
+        <li>
+          <a href="personal.php">Personal <i class="icon-arrow-right"></i></a>
+        </li>
+        <li class="divider"></li>
+        <li class="dropdown-submenu">
+          <a href="#">{% set reports = textos.reports %} {% trans reports %}</a>
+          <ul class="dropdown-menu">
+            <li><a href="procesar_imprimir.php">1-{% set obj_report = textos.obj_report %} {% trans obj_report %}</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    {% endif %}
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{ userName }} <b class="caret"></b></a>
+      <ul class="dropdown-menu" id="opcionesUsuario">
+        <li><a href="" data-toggle="modal" data-target="#divChangePass"><i class="glyphicon glyphicon-cog"></i> {% set change_pass = textos.change_pass %} {% trans change_pass %}</a></li>
+        <li class="divider"></li>
+        <li><a href="logout.php"><i class="glyphicon glyphicon-off"></i> {% set logout = textos.logout %} {% trans logout %}</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+{% endblock%}
+
+{% block barra %}
+<div class="barrainferior">
+  <div>
+   {% set title = textos.title %} {% trans title %}
+
+ </div>
+</div>
+{% endblock %}
+
+
+{% block changePassword %}
+<div class="modal fade" id="divChangePass" tabindex="-1" role="dialog" aria-labelledby="lblChangePass" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close cerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="lblChangePass">{% set change_pass = textos.change_pass %} {% trans change_pass %}</h4>
+			</div>
+			<div class="modal-body">
+				<form method="post" action="" id="frmChangePass" name="frmChangePass">
+					<div class="form-group">
+						<input type="password" id="txtNewPass" name="txtNewPass" placeholder="{% set new_pass = textos.new_pass %} {% trans new_pass %}" class="form-control"/>
+						<input type="hidden" id="hdnPassRequired" value="{% set pass_req = textos.pass_req %} {% trans pass_req %}" >
+						<input type="hidden" id="hdnPassLength" value="{% set pass_length = textos.pass_length %} {% trans pass_length %}" >
+						<input type="hidden" id="hdnPassEqual" value="{% set pass_equal = textos.pass_equal %} {% trans pass_equal %}" >
+					</div>
+					<div class="form-group">
+						<input type="password" id="txtRepeatPass" name="txtRepeatPass" placeholder="{% set rep_new_pass = textos.rep_new_pass %} {% trans rep_new_pass %}" class="form-control {required:true,rangelength: [10, 10]}" />
+					</div>
+					<div class="form-group">
+						<div class="">
+							<img alt="" src="images/ajax-loader.gif" id="ajaxLoader" class="hide">
+							<div class="alert alert-danger font-small hide" id="divPassError"><strong>{% set pass_diff = textos.pass_diff %} {% trans pass_diff %}</strong></div>
+							<div class="alert alert-success font-small hide" id="divPassMod"><strong>{% set pass_mod = textos.pass_mod %} {% trans pass_mod %}</strong></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="">
+							<button class="btn btn-small btn-danger" type="submit" id="btnPass">{% set change_pass = textos.change_pass %} {% trans change_pass %}</button>
+							<button class="btn btn-small btn-default cerrar"data-dismiss="modal" aria-hidden="true" id="btnCancelar">{% set close = textos.close %} {% trans close %}</button>
+						</div>
+					</div> 
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block contenidos %}
+<div class="container">      
+	<div class="row">
+		<section id="wizard">
+			<form id="frmPlanificacion" method="post" action="" >
+				<input type="hidden" id="hdnCodPersonal" value="{{ codpersonal }}" />
+				<input type="hidden" id="hdnAprobacion" value="{{ aprobacion }}" />
+				<div id="rootwizard">
+					<ul id="tabPlanificacion">
+						<li><a href="#tab1" data-toggle="tab">{% set data_pers = textos.data_pers %} {% trans data_pers %}
+						</a></li>
+						<li><a href="#tab2" data-toggle="tab">{% set target_per = textos.target_per %} {% trans target_per %}</a></li>
+						<li><a href="#tab3" data-toggle="tab">{% set infor_cap = textos.infor_cap %} {% trans infor_cap %}</a></li>
+						<li><a href="#tab4" data-toggle="tab">{% set incidence = textos.incidence %} {% trans incidence %}</a></li>
+					</ul>
+					<div class="tab-content" style="padding-top: 20px;">
+						<div class="tab-pane" id="tab1">
+
+							<div class="titulo danger centrar-texto">
+								{% set data_pers = textos.data_pers %} {% trans data_pers %}
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="sltPais" class="control-label">{% set country = textos.country %} {% trans country %}</label>
+									<input type="text" class="form-control" id="txtPais" disabled />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="txtEmpleado" class="control-label">{% set num_empl = textos.num_empl %} {% trans num_empl %}</label>
+									<div class="form-group input-group">
+										<input type="text" class="form-control" id="txtEmpleado" disabled />
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="txtCargo" class="control-label">{% set position = textos.position %} {% trans position %}</label>
+									<input type="text" class="form-control" id="txtCargo" disabled />    
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="txtApellido" class="control-label">{% set surnames = textos.surnames %} {% trans surnames %}</label>
+									<input type="text" class="form-control" id="txtApellido" disabled />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="txtNombre" class="control-label">{% set names = textos.names %} {% trans names %}</label>
+									<input type="text" class="form-control" id="txtNombre" disabled />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="txtArea" class="control-label">{% set field = textos.field %} {% trans field %}</label>
+									<input type="text" class="form-control" id="txtArea" disabled />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="txtOficina" class="control-label">{% set office = textos.office %} {% trans office %}</label>
+									<input type="text" class="form-control" id="txtOficina" disabled />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="txtAntiguedadCargo" class="control-label">{% set seniority_pos = textos.seniority_pos %} {% trans seniority_pos %}</label>
+									<input type="text" class="form-control" id="txtAntiguedadCargo" disabled />
+								</div>
+								<div class="col-md-4">
+									<label for="txtAntiguedadPM" class="control-label">{% set seniority_pm = textos.seniority_pm %} {% trans seniority_pm %}</label>
+									<input type="text" class="form-control" id="txtAntiguedadPM" disabled />
+								</div>
+							</div>
+							
+							<h4>{% set reports = textos.reports %} {% trans reports %}</h4>
+							<hr/>
+
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="" class="control-label">{% set hiera_sup = textos.hiera_sup %} {% trans hiera_sup %}</label>
+									<input type="text" class="form-control" id="txtSuperiorInmediatoApellido" disabled />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="" class="control-label" style="color: #FFFFFF">{% set hiera_sup = textos.hiera_sup %} {% trans hiera_sup %}</label>
+									<input type="text" class="form-control" id="txtSuperiorInmediatoNombre" disabled />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="txtSuperiorInmediatoCargo" class="control-label">{% set position = textos.position %} {% trans position %}</label>
+									<input type="text" class="form-control" id="txtSuperiorInmediatoCargo" disabled />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="" class="control-label">{% set reports_func = textos.reports_func %} {% trans reports_func %}</label>
+									<input type="text" class="form-control" id="txtSuperiorFuncionalApellido" disabled />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="" class="control-label" style="color: #FFFFFF">{% set reports_func = textos.reports_func %} {% trans reports_func %}</label>
+									<input type="text" class="form-control" id="txtSuperiorFuncionalNombre" disabled />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="txtSuperiorFuncionalCargo" class="control-label">{% set position = textos.position %} {% trans position %}</label>
+									<input type="text" class="form-control" id="txtSuperiorFuncionalCargo" disabled />
+								</div>
+							</div>
+							<hr/>
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for=""  class="control-label">{% set plan_period = textos.plan_period %} {% trans plan_period %}</label>
+									<select class="form-control" name="sltPeriodo" id="sltPeriodo">
+										<option value={{ anoanterior }}>{{ anoanterior }}</option>
+										<option selected value={{ anoactual }}>{{ anoactual }}</option>
+										<option value={{ anosiguiente }}>{{ anosiguiente }}</option>
+										<option value={{ anosiguientesiguiente }}>{{ anosiguientesiguiente }}</option>
+										<option value={{ anosiguientesiguientesiguiente }}>{{ anosiguientesiguientesiguiente }}</option>
+									</select>
+								</div>
+							</div>
+
+							<ul class="pager wizard">
+								<li class="next">
+									<a href="#" id="lnkBuscarPlanificacion">{% set next = textos.next %} {% trans next %}</a>
+								</li>
+
+							</ul>
+						</div>
+
+						<div class="tab-pane" id="tab2">
+							<div class="titulo danger centrar-texto">
+								{% set target_per = textos.target_per %} {% trans target_per %}
+							</div>
+							{% if lenguaje == 'es' %}
+							<input type="hidden" id="hdnLanguage" value="{{ lenguaje }}" >
+							{% else %}
+							<input type="hidden" id="hdnLanguage" value="" >
+							{% endif %}
+
+							<input type="hidden" id="hdnPlanning" value="{% set plan = textos.plan %} {% trans plan %}" >	
+							<input type="hidden" id="hdnSearch" value="{% set search = textos.search %} {% trans search %}" >	
+							<input type="hidden" id="hdnAddTarget" value="{% set add_target = textos.add_target %} {% trans add_target %}" >
+							<input type="hidden" id="hdnDelTarget" value="{% set del_target = textos.del_target %} {% trans del_target %}" >
+
+							<input type="hidden" id="hdnEnterTarget" value="{% set enter_target = textos.enter_target %} {% trans enter_target %}" >
+							<input type="hidden" id="hdnEnterActivity" value="{% set enter_activ = textos.enter_activ %} {% trans enter_activ %}" >
+							<input type="hidden" id="hdnEnterChronogram" value="{% set enter_chron = textos.enter_chron %} {% trans enter_chron %}" >
+							<input type="hidden" id="hdnCorrectChronogram" value="{% set corr_chron = textos.corr_chron %} {% trans corr_chron %}" >
+							<input type="hidden" id="hdnEnterGoal" value="{% set enter_goal = textos.enter_goal %} {% trans enter_goal %}" >
+							<input type="hidden" id="hdnEnterWeight" value="{% set enter_weight = textos.enter_weight %} {% trans enter_weight %}" >
+							<input type="hidden" id="hdnEnterWeight" value="{% set enter_weight = textos.enter_weight %} {% trans enter_weight %}" >
+							<input type="hidden" id="hdnNumericWeight" value="{% set num_weight = textos.num_weight %} {% trans num_weight %}" >
+							<input type="hidden" id="hdnMinWeight" value="{% set min_weight = textos.min_weight %} {% trans min_weight %}" >
+							<input type="hidden" id="hdnMaxWeight" value="{% set max_weight = textos.max_weight %} {% trans max_weight %}" >
+							<input type="hidden" id="hdnTotalWeight" value="{% set tot_weight = textos.tot_weight %} {% trans tot_weight %}" >
+							<input type="hidden" id="hdnAddTarget" value="{% set add_target = textos.add_target %} {% trans add_target %}" >
+							<input type="hidden" id="hdnDelTarget" value="{% set del_target = textos.del_target %} {% trans del_target %}" >
+							<input type="hidden" id="hdnEnterProposed" value="{% set enter_pr_act = textos.enter_pr_act %} {% trans enter_pr_act %}" >
+							<input type="hidden" id="hdnAddSkill" value="{% set add_skill = textos.add_skill %} {% trans add_skill %}" >
+							<input type="hidden" id="hdnDelSkill" value="{% set del_skill = textos.del_skill %} {% trans del_skill %}" >
+							<input type="hidden" id="hdnSavedPlanning" value="{% set saved_pla = textos.saved_pla %} {% trans saved_pla %}" >
+							<input type="hidden" id="hdnSave" value="{% set save = textos.save %} {% trans save %}" >
+							<input type="hidden" id="hdnPrint" value="{% set print = textos.print %} {% trans print %}" >
+							<input type="hidden" id="hdnNext" value="{% set next = textos.next %} {% trans next %}" >
+							<input type="hidden" id="hdnOk" value="{% set ok = textos.ok %} {% trans ok %}" >
+							<input type="hidden" id="hdnCancel" value="{% set canc = textos.canc %} {% trans canc %}" >
+							<input type="hidden" id="hdnApprovalSaved" value="{% set approval_saved = textos.approval_saved %} {% trans approval_saved %}" >
+							<input type="hidden" id="hdnExistPlannigTitle" value="{% set exis_plan_tit = textos.exis_plan_tit %} {% trans exis_plan_tit %}">
+							<input type="hidden" id="hdnExistPlanning" value="{% set exis_plan = textos.exis_plan %} {% trans exis_plan %}">
+
+							<div class="table-responsive">
+								<table class="table table-striped" id="tbObjetivos" data-numFilas="1" data-ultItem="0" data-objObtenido="0">
+									<thead>
+										<tr>
+											<th>{% set target_proj = textos.target_proj %} {% trans target_proj %}</th>
+											<th>{% set act_prin = textos.act_prin %} {% trans act_prin %}</th>
+											<th>{% set chronogram = textos.chronogram %} {% trans chronogram %}</th>
+											<th>{% set goal = textos.goal %} {% trans goal %}</th>
+											<th>{% set rel_weight = textos.rel_weight %} {% trans rel_weight %}</th>
+											<th>&nbsp;</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="trObjetivos">
+											<td class="form-group col-md-3"><input type="text" class="form-control input-sm required Objetivo vModal" name="txtObjetivo[0]" data-toggle="modal" data-target="#divInputData" /></td>
+											<td class="form-group col-md-3"><input type="text" class="form-control input-sm required Actividad vModal" name="txtActividad[0]" data-toggle="modal" data-target="#divInputData"></td>
+											<td class="form-group col-md-1"><input type="text" class="form-control input-sm required Cronograma Fecha" name="txtCronograma[0]"></td>
+											<td class="form-group col-md-3"><input type="text" class="form-control input-sm required Meta vModal" name="txtMeta[0]" data-toggle="modal" data-target="#divInputData">
+												<td class="form-group col-md-2">
+													<div class="input-group input-group-sm">
+														<input type="text" class="form-control required PesoRelativo" name="txtPesoRelativo[0]">
+														<span class="input-group-addon">%</span>
+													</div>
+												</td>
+												<td class=""><a class="addObjetivo btn btn-success btn-mini" data-toogle="tooltip" data-original-title="{% set add_target = textos.add_target %} {% trans add_target %}"><i class="glyphicon glyphicon-plus-sign"></i></a></td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<td colspan="4" style="text-align: right"><label>Total ({% spaceless %}{% set maximum = textos.maximum %} {% trans maximum %}{% endspaceless %} 100%)</label></td>
+												<td class="form-group"><div class="input-group input-group-sm"><input type="text" class="form-control total" id="txtTotal" name="txtTotal" value="0" readonly="readonly"><span class="input-group-addon">%</span></div></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+								<ul class="pager wizard">
+									<li class="previous first" style="display:none;"><a href="#">First</a></li>
+									<li class="previous"><a href="#">{% set back = textos.back %} {% trans back %}</a></li>
+									<li class="next"><a href="#">{% set next = textos.next %} {% trans next %}</a></li>
+								</ul>
+							</div>
+
+							<div class="tab-pane" id="tab3">
+								<div class="titulo danger centrar-texto">
+									{% set infor_cap = textos.infor_cap %} {% trans infor_cap %}
+								</div>
+								<hr/>
+								<table class="table table-striped" id="tbAcciones" data-numFilas="1" data-ultItem="0">
+									<thead>
+										<tr>
+											<th>{% set skill = textos.skill %} {% trans skill %}</th>
+										</tr>
+									</thead> 
+									<tbody>
+										<tr  class="trAcciones">
+											<td class="form-group"><input type="text" class="form-control required Accion vModal" name="txtAccion[0]" data-toggle="modal" data-target="#divInputData"></td>
+											<td><a class="addAccion btn btn-success btn-mini" data-toogle="tooltip" data-original-title="{% set add_skill = textos.add_skill %} {% trans add_skill %}"><i class="glyphicon glyphicon-plus-sign"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="row">
+									<div class="form-group col-md-12">
+										<label for="txtActitudes" class="control-label">{% set attitude = textos.attitude %} {% trans attitude %}</label>
+										<input type="text" class="form-control" id="txtActitudes">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-12">
+										<label for="txtCompromisos" class="control-label">{% set commitment = textos.commitment %} {% trans commitment %}</label>
+										<input type="text" class="form-control col-md-10" id="txtCompromisos">
+									</div>
+								</div>
+
+								<div class="centrar-texto list-group-item active" style="margin-top: 25px">
+									{% set message = textos.message %} {% trans message %}
+								</div>
+								<ul class="pager wizard">
+									<li class="previous"><a href="#">{% set back = textos.back %} {% trans back %}</a></li>
+									<li class="next"><a href="#">{% set next = textos.next %} {% trans next %}</a></li>
+								</ul>
+							</div>
+							<div class="tab-pane" id="tab4">
+								<div class="titulo danger centrar-texto">
+									{% set incidence = textos.incidence %} {% trans incidence %}
+								</div>
+								<hr/>
+
+								<div class="row">
+									<div class="col-md-4">
+										<label for="">{% set eval_aspect = textos.eval_aspect %} {% trans eval_aspect %}</label>
+									</div>
+									<div class="col-md-4">
+										<label for="">{% set rel_weight = textos.rel_weight %} {% trans rel_weight %}</label>	
+									</div>
+								</div>
+								<hr/>
+								<div class="row">
+									<div class="col-md-4">
+										<label for="">{% set target_period = textos.target_period %} {% trans target_period %}</label>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" class="form-control required" id="txtIncidenciaObjetivo" name="txtIncidenciaObjetivo" disabled>
+												<span class="input-group-addon">%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<label for="">{% set leadership = textos.leadership %} {% trans leadership %}</label>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" class="form-control required" id="txtIncidenciaLiderazgo" name="txtIncidenciaLiderazgo" disabled>
+												<span class="input-group-addon">%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<ul class="pager wizard">
+									<li class="previous"><a href="#">{% set back = textos.back %} {% trans back %}</a></li>
+									<li class=""><a href="#" id="lnkGuardar">{% set save = textos.save %} {% trans save %}</a></li>
+									<li><a id="lnkImprimir" href="#">{% set print = textos.print %} {% trans print %}</a></li>
+									<li class="hide"><a id="lnkAprobar" href="#">{% set approve = textos.approve %} {% trans approve %}</a></li
+								</ul>
+							</div>
+					</div>
+					<div class="modal fade" id="divConfirm" tabindex="-1" role="dialog" aria-labelledby="lblConfirmTitle" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+									<h4 class="modal-title" id="lblConfirmTitle"></h4>
+								</div>
+								<div class="modal-body">
+									<label id="lblConfirm"></label>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" id="btnAceptarPlanning" data-dismiss="modal">{% set ok = textos.ok %} {% trans ok %}</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">{% set canc = textos.canc %} {% trans canc %}</button>
+								</div>
+							</div>
+						</div>
+					</div>
+						<div class="modal fade" id="divInputData" tabindex="-1" role="dialog" aria-labelledby="lblInputdata" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+										<h4 class="modal-title" id="lblInputdata">{% set enter_data = textos.enter_data %} {% trans enter_data %}</h4>
+									</div>
+									<div class="modal-body">
+										<textarea id="textareaID" class="form-control"></textarea>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger" id="btnAceptarInput" data-dismiss="modal">{% set ok = textos.ok %} {% trans ok %}</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">{% set canc = textos.canc %} {% trans canc %}</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="divAlert" tabindex="-1" role="dialog" aria-labelledby="hAlert" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close cerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="hAlert"></h4>
+									</div>
+									<div class="modal-body">
+										<label for="" id="lblAlert"></label>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger cerrar" data-dismiss="modal">{% set ok = textos.ok %} {% trans ok %}</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+ 
+						<div class="modal fade modalPdf" id="divPdf" tabindex="-1" role="dialog" aria-labelledby="hPdf" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close cerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="hPdf"></h4>
+									</div>
+									<div class="modal-body">
+										<iframe id="ifrPdf" src="" width="540" height="300" style="border: none;"></iframe>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger cerrar" data-dismiss="modal">{% set ok = textos.ok %} {% trans ok %}</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						
+				</div> 
+
+			</form>
+		</section>
+	</div>
+</div> 
+{% endblock %}
+
+{% block piePagina %} 
+<footer>
+  <hr>
+  {{ piePagina|raw }}
+</footer>
+{% endblock%}
+
+{% block extraCSS %}
+  <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.4.custom.min.css">
+{% endblock %}
+
+
+{% block javascripts %}
+<script type="text/javascript" src="js/bootstrap/jquery.bootstrap.wizard.js"></script>
+<script type="text/javascript" src="js/jquery/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.ui.datepicker-es.js"></script>
+<script type="text/javascript" src="js/jquery-validation-1.11.1/jquery.validate.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/jquery.textareaCounter.plugin.js"></script>
+<script>
+
+$(function(){
+
+	buscarPersonal($('#hdnCodPersonal').val(), 'planificacion');
+
+	//Si un superior entra a la planificación de un subordinado, hdnAprobacion es true y esta visible el botón Aprobar
+	if($('#hdnAprobacion').val())
+		$('.pager').find('li').removeClass('hide');
+		
+	$padre=null;
+	$('#frmPlanificacion').on('click', '.vModal', function () {
+	    $padre=$(this);
+	    $('#textareaID').val($padre.val());
+	});
+
+	$('#divChangePass').on('click', '.cerrar', function () {
+		$('#txtNewPass').val("");
+		$('#txtRepeatPass').val("");
+		$('#divPassMod').addClass('hide');
+		$('#divPassError').addClass('hide');
+	});
+
+	$('#divAlert').on('click', '.cerrar', function () {
+		if(parseInt($('#tbObjetivos').attr('data-guardado')) === 1)
+			$(location).attr('href','index.php');
+	});
+
+	$('#divPdf').on('click', '.cerrar', function () {
+		if(parseInt($('#tbObjetivos').attr('data-guardado')) === 1)
+			$(location).attr('href','index.php');
+	});
+
+	$('.addObjetivo').tooltip();
+	$('.addAccion').tooltip();
+
+	$('#divInputData').on('focus', function () {
+		$('#textareaID').focus();
+	});
+	$('#btnAceptarInput').on('click', function(){
+	   $textarea=$('#textareaID');
+	   $padre.val($textarea.val());
+	   $textarea.val('');
+	   $('.originalTextareaInfo').empty();
+	});
+	$('#btnAceptarPlanning').on('click', function(){
+		
+		if($('#tabPlanificacion .active').find('a').attr('href') == '#tab4'){
+			aprobarPlanificacion();
+		}else{
+			$('#rootwizard').bootstrapWizard('show', 1);
+			//Una vez presionado el botón OK de confirmar, la ventana modal no vuelve a aparecer
+			$('#tbObjetivos').attr('data-aceptar', 1);
+		}
+	});
+
+	var opciones = {
+		'maxCharacterSize': 140,
+		'originalStyle': 'originalTextareaInfo',
+		'warningStyle' : 'warningTextareaInfo',
+		'warningNumber': 40,
+		'displayFormat' : '#left/#max'
+	};
+
+	$('#textareaID').textareaCount(opciones); 
+
+	$('#sltPeriodo').change(function(){
+		limpiarFormulario('periodo');
+	});
+
+	function limpiarFormulario(){
+		$('#tbObjetivos').removeAttr('data-codplanificacion');
+		$('#tbObjetivos').removeAttr('data-aceptar');
+		$('#tbObjetivos').removeAttr('data-guardado');		
+		$('#tbObjetivos').attr('data-numFilas', 1);
+		$('#tbObjetivos').attr('data-ultItem', 0);
+		$('#tbObjetivos').attr('data-objObtenido', 0);
+		$('.trObjetivos').remove();
+		var appendObj = '<tr class="trObjetivos"> <td class="form-group col-md-3"><input type="text" class="form-control input-sm required Objetivo vModal" name="txtObjetivo[0]" data-toggle="modal" data-target="#divInputData"></td> <td class="form-group col-md-3"><input type="text" class="form-control input-sm required Actividad vModal" name="txtActividad[0]" data-toggle="modal" data-target="#divInputData"></td> <td class="form-group col-md-1"><input type="text" class="form-control input-sm required Cronograma Fecha" name="txtCronograma[0]"></td> <td class="form-group col-md-3"><input type="text" class="form-control input-sm required Meta vModal" name="txtMeta[0]" data-toggle="modal" data-target="#divInputData"></td> <td class="form-group col-md-2"><div class="input-group input-group-sm"><input type="text" class="form-control required PesoRelativo" name="txtPesoRelativo[0]"><span class="input-group-addon">%</span></div></td> <td><a class="addObjetivo btn btn-success btn-mini" data-toggle="tooltip" data-original-title="'+$('#hdnAddTarget').val()+'"><i class="glyphicon glyphicon-plus-sign"></i></a></td> </tr>';
+		$('#tbObjetivos').find('tbody').append(appendObj);
+		$('input[name="txtCronograma[0]"]').datepicker($.datepicker.regional[$('#hdnLanguage').val()]);
+		$('#txtTotal').val(0);
+		$('.addObjetivo').tooltip();
+		$('#tbAcciones').attr('data-numFilas', 1);
+		$('#tbAcciones').attr('data-ultItem', 0);
+
+		$('.trAcciones').remove();
+		var appendAcc = '<tr class="trAcciones"><td class="form-group"><input type="text" class="form-control required Accion vModal" name="txtAccion[0]" data-toggle="modal" data-target="#divInputData"></td> <td><a class="addAccion btn btn-success btn-mini" data-toggle="tooltip" data-original-title="'+$('#hdnAddSkill').val()+'"><i class="glyphicon glyphicon-plus-sign"></i></a></td> </tr>';
+		$('#tbAcciones').find('tbody').append(appendAcc);
+		$('.addAccion').tooltip();
+		$('#txtActitudes').removeAttr('data-codmejora');
+		$('#txtIncidenciaObjetivo').removeAttr('data-codincidencia');
+
+	}
+	
+	$.validator.addMethod(
+		'esFecha', 
+		function(value, element) {
+			if ($('#hdnLanguage').val() === 'es')
+				return value.match(/^(0[1-9]|[12][0-9]|3[01])([\/-])(0[1-9]|1[012])\2(\d{4})$/);
+			else
+				return value.match(/^(0[1-9]|1[012])([\/-])(0[1-9]|[12][0-9]|3[01])\2(\d{4})$/);
+		
+		},
+        $('#hdnCorrectChronogram').val()
+	);
+	$.validator.addClassRules("Fecha", { esFecha: true });
+
+	//Valida el formulario
+	var $validator = $('#frmPlanificacion').validate({
+		highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+		errorElement: 'span',
+	    errorClass: 'help-block',
+	    errorPlacement: function(error, element) {
+	        if(element.parent('.input-group').length) {
+	            error.insertAfter(element.parent());
+	        } else {
+	            error.insertAfter(element);
+	        }
+	    },
+		rules: {
+			txtTotal: {
+				max: 100,
+				min: 100
+			},
+			txtIncidenciaObjetivo: {
+				required: true,
+				number: true,
+				min: 10,
+				max: 90	
+			},
+			txtIncidenciaLiderazgo: {
+				required: true,
+				number: true,
+				min: 10,
+				max: 90				
+			}
+		},
+		messages: {
+			txtTotal: $('#hdnTotalWeight').val()
+		}
+	});
+	
+	//Wizard
+	$('#rootwizard').bootstrapWizard({
+		'tabClass': 'nav nav-pills',
+		onTabClick: function(tab, navigation, index) {
+			return false; //si esta en false no puedo navegar por el menu
+		},
+		'onNext': function(tab, navigation, index) {
+			$('#txtEmpleado').attr('name', 'txtEmpleado');
+			var $valid = $('#frmPlanificacion').valid();
+			
+			if(index === 1){
+					if(parseInt($('#tbObjetivos').attr('data-objObtenido')) === 0){
+						buscarPlanificacion();
+					}else if($('#tbObjetivos').attr('data-aceptar')){
+						$('#rootwizard').bootstrapWizard('show', 1);
+					}else{
+						$('#lblConfirmTitle').text($('#hdnExistPlannigTitle').val());
+						$('#lblConfirm').text($('#hdnExistPlanning').val());
+						$('#divConfirm').modal('show');
+					}
+			
+				return false;
+			}
+			//Comprueba que sea la segunda vista y que el número de objetivos no sea menor de 3
+			if(index === 2 && $('#tbObjetivos').attr('data-numFilas') < 3){
+				$('#lblAlert').text('{% set min_target = textos.min_target %} {% trans min_target %}');
+				$('#divAlert').modal('show');
+				return false;
+			}
+			if(!$valid) {
+				$validator.focusInvalid();
+	  				return false;
+			}
+		}
+		
+	});
+
+	var numFilaObjetivo = 1;
+	var numFilaAccion = 1;
+
+	//Detectar que botón se esta accionando
+	$('body').on('click','#frmPlanificacion a',function(elemento){
+		elemento.preventDefault();
+
+				
+		//Agrega y elimina filas a la tabla Objetivos
+		var ejecutar = $(this).attr('class');
+
+		if(ejecutar == 'delObjetivo btn btn-danger btn-mini') {
+			
+			var totals = parseInt($('#txtTotal').val());
+			totals -= parseInt($(this).parent().prev().children().children(':first-child').val()) || 0;
+
+			$('#txtTotal').val(totals).valid();
+			$(this).parent().parent().remove();
+
+			$('#tbObjetivos').attr('data-numFilas', parseInt($('#tbObjetivos').attr('data-numFilas'))-1);
+		}else if (ejecutar == 'addObjetivo btn btn-success btn-mini') {
+			if(parseInt($('#tbObjetivos').attr('data-numFilas')) <= 6) {
+				$(this).attr('class','delObjetivo btn btn-danger btn-mini');
+				$(this).attr('data-toggle','tooltip');
+				$(this).attr('data-original-title', $('#hdnDelTarget').val());
+				$(this).html('<i class="glyphicon glyphicon-minus-sign"></i>');
+
+				numFilaObjetivo = parseInt($('#tbObjetivos').attr('data-ultItem'))+1;
+				
+				var appendTxt = '<tr class="trObjetivos"> <td class="form-group col-md-3"><input type="text" class="form-control input-sm required Objetivo vModal" name="txtObjetivo['+numFilaObjetivo+']" data-toggle="modal" data-target="#divInputData"></td> <td class="form-group col-md-3"><input type="text" class="form-control input-sm required Actividad vModal" name="txtActividad['+numFilaObjetivo+']" data-toggle="modal" data-target="#divInputData"></td> <td class="form-group col-md-1"><input type="text" class="form-control input-sm required Cronograma Fecha" name="txtCronograma['+numFilaObjetivo+']"></td> <td class="form-group col-md-3"><input type="text" class="form-control input-sm required Meta vModal" name="txtMeta['+numFilaObjetivo+']" data-toggle="modal" data-target="#divInputData"></td> <td class="form-group col-md-2"><div class="input-group input-group-sm"><input type="text" class="form-control required PesoRelativo" name="txtPesoRelativo['+numFilaObjetivo+']"><span class="input-group-addon">%</span></div></td> <td><a class="addObjetivo btn btn-success btn-mini" data-toggle="tooltip" data-original-title="'+$('#hdnAddTarget').val()+'"><i class="glyphicon glyphicon-plus-sign"></i></a></td> </tr>';
+				$('.trObjetivos:last').after(appendTxt);
+				$('[name="txtObjetivo['+numFilaObjetivo+']"]').rules('add', reglaObjetivo);
+				$('[name="txtActividad['+numFilaObjetivo+']"]').rules('add', reglaActividad);
+				$('[name="txtCronograma['+numFilaObjetivo+']"]').datepicker($.datepicker.regional[$('#hdnLanguage').val()]);
+				$('[name="txtCronograma['+numFilaObjetivo+']"]').rules('add', reglaCronograma);
+				$('[name="txtMeta['+numFilaObjetivo+']"]').rules('add', reglaMeta);
+				$('[name="txtPesoRelativo['+numFilaObjetivo+']"]').rules('add', reglaPesoRelativo);
+				
+				
+				$('#tbObjetivos').attr('data-ultItem', parseInt($('#tbObjetivos').attr('data-ultItem'))+1);
+				
+				$('.delObjetivo').tooltip();
+				$('.addObjetivo').tooltip();
+
+				$('#tbObjetivos').attr('data-numFilas', parseInt($('#tbObjetivos').attr('data-numFilas'))+1);
+			}else {
+				$('#lblAlert').text('{% set max_target = textos.max_target %} {% trans max_target %}');
+				$('#divAlert').modal('show');
+			}			
+
+		}
+
+		if(ejecutar == 'delAccion btn btn-danger btn-mini') {
+			$(this).parent().parent().remove();
+			$('#tbAcciones').attr('data-numFilas', parseInt($('#tbAcciones').attr('data-numFilas'))-1);
+		}else if (ejecutar == 'addAccion btn btn-success btn-mini') {
+			$(this).attr('class','delAccion btn btn-danger btn-mini');
+			$(this).attr('data-toggle','tooltip');
+			$(this).attr('data-original-title', $('#hdnDelSkill').val());
+			$(this).html('<i class="glyphicon glyphicon-minus-sign"></i>');
+
+			numFilaAccion = parseInt($('#tbAcciones').attr('data-numFilas'))===1?parseInt($('#tbAcciones').attr('data-numFilas')):parseInt($('#tbAcciones').attr('data-numFilas'))+1;
+
+			numFilaAccion = parseInt($('#tbAcciones').attr('data-ultItem'))+1;
+
+			var appendTxt = '<tr class="trAcciones"><td class="form-group"><input type="text" class="form-control required Accion vModal" name="txtAccion['+numFilaAccion+']" data-toggle="modal" data-target="#divInputData"></td> <td><a class="addAccion btn btn-success btn-mini" data-toggle="tooltip" data-original-title="'+$('#hdnAddSkill').val()+'"><i class="glyphicon glyphicon-plus-sign"></i></a></td> </tr>';
+			$('.trAcciones:last').after(appendTxt);
+			$('[name="txtAccion['+numFilaAccion+']"]').rules('add', reglaAccion);
+						
+			$('.delAccion').tooltip();
+			$('.addAccion').tooltip();
+
+			
+			$('#tbAcciones').attr('data-ultItem', parseInt($('#tbAcciones').attr('data-ultItem'))+1);
+			$('#tbAcciones').attr('data-numFilas', parseInt($('#tbAcciones').attr('data-numFilas'))+1);
+		}
+
+		ejecutar = $(this).attr('id');
+
+		if(ejecutar === 'lnkGuardar') {
+			if($('#frmPlanificacion').valid()){
+				var $contenidoAjax = $('#lnkGuardar').html('<img src="images/ajax-loader.gif"/>');
+    			guardarPlanificacion(true, true);
+    			$contenidoAjax.html($('#hdnSave').val());
+    		}
+
+    		$(this).off( elemento );
+    		$('.pager a:link').css('color', '#E74C3C !important');
+		}
+
+		if(ejecutar === 'lnkAprobar'){
+			$('#lblConfirmTitle').text('{% set appove_tilte = textos.appove_tilte %} {% trans appove_tilte %}');
+			$('#lblConfirm').text('{% set approve_mess = textos.approve_mess %} {% trans approve_mess %}');
+			$('#divConfirm').modal('show');
+		}
+		
+	});
+
+
+	// check keyup on quantity inputs to update totals field
+	$('#frmPlanificacion').validateDelegate('input.PesoRelativo', 'keyup', function(event) {
+		var totals = 0;
+		$('#tbObjetivos input.PesoRelativo').each(function() {
+			totals += +this.value;
+		});
+		//$('#txtTotal').attr('value', totals).valid();
+		$('#txtTotal').val(totals).valid();
+
+	});
+
+
+	//Reglas para los elementos de la tabla dinámica
+	var reglaObjetivo = {
+        required: true,
+        messages: {
+            required: $('#hdnEnterTarget').val()
+        }
+    }
+    var reglaActividad = {
+        required: true,
+        messages: {
+            required: $('#hdnEnterActivity').val()
+        }
+    }
+    var reglaCronograma = {
+        required: true,
+        //isDate: true,
+        messages: {
+            required: $('#hdnEnterChronogram').val()
+        }
+    }
+    var reglaMeta = {
+        required: true,
+        messages: {
+            required: $('#hdnEnterGoal').val()
+        }
+    }
+    var reglaPesoRelativo = {
+        required: true,
+        number: true,
+        min: 10,
+        max: 50,
+        messages: {
+            required: $('#hdnEnterWeight').val(),
+            number: $('#hdnNumericWeight').val(),
+            min: jQuery.format($('#hdnMinWeight').val()+' {0}'),
+            max: jQuery.format($('#hdnMaxWeight').val()+' {0}')
+        }
+    }
+    var reglaAccion = {
+        required: true,
+        messages: {
+            required: $('#hdnEnterProposed').val()
+        }
+    }
+
+    //Estos métodos deben ir después de .validate()
+    $('.Objetivo').each(function() {
+        $(this).rules('add', reglaObjetivo);
+    });
+    $('.Actividad').each(function() {
+        $(this).rules('add', reglaActividad);
+    });
+    $('.Cronograma').each(function() {
+        $(this).rules('add', reglaCronograma);
+        $(this).datepicker($.datepicker.regional[$('#hdnLanguage').val()]);
+    });
+    $('.Meta').each(function() {
+        $(this).rules('add', reglaMeta);
+    });
+    $('.PesoRelativo').each(function() {
+        $(this).rules('add', reglaPesoRelativo);
+    });
+    $('.Accion').each(function() {
+        $(this).rules('add', reglaAccion);
+    });
+
+
+    $('#lnkImprimir').on('click', function(e){
+		if($('#txtEmpleado').val() !== ''){
+			var $contenidoAjax = $('#lnkImprimir').html('<img src="images/ajax-loader.gif"/>');
+			imprimirPlanificacion($('#txtEmpleado').val(), $('#sltPeriodo').val());
+   			$contenidoAjax.html($('#hdnPrint').val());
+			
+		}
+		e.preventDefault();
+	});
+	
+	//Función para validar si es un empleado
+	function passwordIguales(value, element, param){
+		//var codEmpleado =$('#tbAcciones').attr('data-codpersonal');
+		var newpassword = $('#txtNewPass').val();
+		var repeatpassword = $('#txtRepeatPass').val();
+		if ((value !== newpassword !== repeatpassword) && value !== '') {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	$.validator.addMethod('passwordIguales', passwordIguales, $('#hdnPassEqual').val());
+
+	$('#frmChangePass').validate({
+		submitHandler: function(){
+			var str = $('#frmChangePass').serialize();
+
+			$.ajax({
+				beforeSend: function(){
+					// Verificamos si hay mensaje de error visible
+	                if($('#divPassError').is(':visible')){
+	                   $('#divPassError').addClass('hide');
+	                }
+                	$('#ajaxLoader').removeClass('hide');
+                },
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                url:"includes/cliente.php",
+                data:str + "&accion=cambiarPass&id=" + Math.random(),
+                success: function(response){
+
+	              // Verificar errores
+	              if(response.respuesta == true){
+	              	$('#divPassMod').removeClass('hide');
+	              	
+	              }else{
+	              	$('#divPassError').removeClass('hide');
+	              }
+
+	              $('#ajaxLoader').addClass('hide');
+
+	          }
+			});
+
+		},
+		highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+		errorElement: 'span',
+	    errorClass: 'help-block',
+	    errorPlacement: function(error, element) {
+	        if(element.parent('.input-group').length) {
+	            error.insertAfter(element.parent());
+	        } else {
+	            error.insertAfter(element);
+	        }
+	    },
+        rules: {
+        	txtNewPass: {
+        		passwordIguales: true,
+        		required: true,
+        		minlength: 5
+        	},
+        	txtRepeatPass: {
+        		required: true,
+        		minlength: 5
+        	}
+        },
+        messages: {
+        	txtNewPass: {
+        		required: $('#hdnPassRequired').val(),
+        		minlength: $('#hdnPassLength').val()
+        	},
+        	txtRepeatPass: {
+        		required: $('#hdnPassRequired').val(),
+        		minlength: $('#hdnPassLength').val()
+        	}
+        } 
+	});
+
+
+
+});
+</script>
+
+{% endblock %}

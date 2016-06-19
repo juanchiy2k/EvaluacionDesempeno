@@ -1,0 +1,312 @@
+{% extends 'default_layout.html'%}
+
+{% block menuresponsivo %} 
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</button>
+{% endblock %}
+
+{% block menu %}
+<div class="navbar-collapse collapse">
+  <ul class="nav navbar-nav">
+    <li><a href="index.php"><i class="glyphicon glyphicon-home"></i>{% set home = textos.home %} {% trans home %}</a></li>
+    <li><a href="planificacion.php"><i class="glyphicon glyphicon-signal"></i>{% set planning = textos.planning %} {% trans planning %}</a></li>
+    <li><a href="under_construction.php"><i class="glyphicon glyphicon-eye-open"></i>{% set monitoring = textos.monitoring %} {% trans monitoring %}</a></li>
+    <li><a href="under_construction.php"><i class="glyphicon glyphicon-thumbs-up"></i>{% set evaluation = textos.evaluation %} {% trans evaluation %}</a></li>
+    <li><a href="#" onClick="imprimirInstructivo($('#hdnLanguage').val());return false"><i class="glyphicon glyphicon-question-sign"></i>{% set help = textos.help %} {% trans help %}</a></li>
+    {% if perfil == 'EDITORES' %}
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="glyphicon glyphicon-globe"></i>{% set administration = textos.administration %} {% trans administration %} <b class="caret"></b></a>
+      <ul class="dropdown-menu" id="menu1">
+        <li>
+          <a href="personal.php">Personal <i class="icon-arrow-right"></i></a>
+        </li>
+        <li class="divider"></li>
+        <li class="dropdown-submenu">
+          <a href="#">{% set reports = textos.reports %} {% trans reports %}</a>
+          <ul class="dropdown-menu">
+            <li><a href="procesar_imprimir.php">1-{% set obj_report = textos.obj_report %} {% trans obj_report %}</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    {% endif %}
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{ userName }} <b class="caret"></b></a>
+      <ul class="dropdown-menu" id="opcionesUsuario">
+        <li><a href="" data-toggle="modal" data-target="#divChangePass"><i class="glyphicon glyphicon-cog"></i> {% set change_pass = textos.change_pass %} {% trans change_pass %}</a></li>
+        <li class="divider"></li>
+        <li><a href="logout.php"><i class="glyphicon glyphicon-off"></i> {% set logout = textos.logout %} {% trans logout %}</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+{% endblock%}
+
+
+{% block barra %}
+<div class="barrainferior">
+  <div>
+   {% set title = textos.title %} {% trans title %}
+
+ </div>
+</div>
+{% endblock %}
+
+{% block changePassword %}
+<div class="modal fade" id="divChangePass" tabindex="-1" role="dialog" aria-labelledby="lblChangePass" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close cerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="lblChangePass">{% set change_pass = textos.change_pass %} {% trans change_pass %}</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="" id="frmChangePass" name="frmChangePass">
+          <div class="form-group">
+            <input type="password" id="txtNewPass" name="txtNewPass" placeholder="{% set new_pass = textos.new_pass %} {% trans new_pass %}" class="form-control"/>
+            <input type="hidden" id="hdnPassRequired" value="{% set pass_req = textos.pass_req %} {% trans pass_req %}" >
+            <input type="hidden" id="hdnPassLength" value="{% set pass_length = textos.pass_length %} {% trans pass_length %}" >
+            <input type="hidden" id="hdnPassEqual" value="{% set pass_equal = textos.pass_equal %} {% trans pass_equal %}" >
+          </div>
+          <div class="form-group">
+            <input type="password" id="txtRepeatPass" name="txtRepeatPass" placeholder="{% set rep_new_pass = textos.rep_new_pass %} {% trans rep_new_pass %}" class="form-control {required:true,rangelength: [10, 10]}" />
+          </div>
+          <div class="form-group">
+            <div class="">
+              <img alt="" src="images/ajax-loader.gif" id="ajaxLoader" class="hide">
+              <div class="alert alert-danger font-small hide" id="divPassError"><strong>{% set pass_diff = textos.pass_diff %} {% trans pass_diff %}</strong></div>
+              <div class="alert alert-success font-small hide" id="divPassMod"><strong>{% set pass_mod = textos.pass_mod %} {% trans pass_mod %}</strong></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="">
+              <button class="btn btn-small btn-danger" type="submit" id="btnPass">{% set change_pass = textos.change_pass %} {% trans change_pass %}</button>
+              <button class="btn btn-small btn-default cerrar"data-dismiss="modal" aria-hidden="true" id="btnCancelar">{% set close = textos.close %} {% trans close %}</button>
+            </div>
+          </div> 
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block contenidos %}
+<div class="container">
+  {% if lenguaje == 'es' %}
+  <input type="hidden" id="hdnLanguage" value="{{ lenguaje }}" >
+  {% else %}
+  <input type="hidden" id="hdnLanguage" value="" >
+  {% endif %}
+  <div class="col-lg-4 col-md-6">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>{% set planning = textos.planning %} {% trans planning %}</h3>
+        <p>{% set descrip_plan = textos.descrip_plan %} {% trans descrip_plan %}</p>
+        <p><a href="planificacion.php" class="btn btn-danger">{% set select = textos.select %} {% trans select %}</a></p>
+      </div>
+      <div class="hide" id="divPersonalCargo">
+        <div class="accordion" id="divAccordion">
+          <div class="accordion-group">
+            <div class="accordion-heading"><a class="accordion-toggle" href="#collapseOne" data-toggle="collapse" data-parent="#divAccordion">
+              {% set staff_sub = textos.staff_sub %} {% trans staff_sub %}
+            </a></div>
+            <form id="frmPersonalCargo" action="planificacion.php" method="post">
+              <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+                <div class="accordion-inner">
+                  <input type="hidden" id="hdnRegistrada" value="{% set registered = textos.registered %} {% trans registered %}">
+                  <input type="hidden" id="hdnAprobada" value="{% set approved = textos.approved %} {% trans approved %}">
+                  <input type="hidden" id="hdnSinRegistro" value="{% set without_reg = textos.without_reg %} {% trans without_reg %}">
+                  <table class="table table-condensed" style="font-family: Helvetica,Arial,sans-serif; font-size: 12px;" id="tbPersonalCargo">
+                    <thead>
+                      <tr>
+                        <th>{% filter upper %}{% set name = textos.name %} {% trans name %}{% endfilter %}</th>
+                        <th>{% filter upper %}{% set status = textos.status %} {% trans status %}{% endfilter %}</th>
+                      </tr>
+                    </thead>
+                    <tbody id="trPersonalCargo">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="col-lg-4 col-md-6">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>{% set monitoring = textos.monitoring %} {% trans monitoring %}</h3>
+        <p>{% set descrip_moni = textos.descrip_moni %} {% trans descrip_moni %}</p>
+        <p><a href="under_construction.php" class="btn btn-danger">{% set select = textos.select %} {% trans select %}</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-6">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>{% set evaluation = textos.evaluation %} {% trans evaluation %}</h3>
+        <p>{% set descrip_eval = textos.descrip_eval %} {% trans descrip_eval %}</p>
+        <p><a href="under_construction.php" class="btn btn-danger">{% set select = textos.select %} {% trans select %}</a> </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modalPdf" id="divPdf" tabindex="-1" role="dialog" aria-labelledby="hPdf" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="hPdf"></h4>
+        </div>
+        <div class="modal-body">
+          <iframe id="ifrPdf" src="" width="540" height="300" style="border: none;"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">{% set ok = textos.ok %} {% trans ok %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% endblock %}
+
+{% block piePagina %} 
+<footer>
+  <hr>
+  <h5>{% set mess_foot = textos.mess_foot %} {% trans mess_foot %}</h5>
+  <hr>
+  {{ piePagina|raw }}
+</footer>
+{% endblock%}
+
+{% block javascripts %}
+<script type="text/javascript" src="js/jquery.textareaCounter.plugin.js"></script>
+<script type="text/javascript" src="js/jquery-validation-1.11.1/jquery.validate.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script>
+
+$(function(){
+
+  buscarPersonalCargo(); 
+
+  $('.accordion').on('show', function (e) {
+    $(e.target).prev('.accordion-heading').addClass('accordion-opened');
+  });
+    
+  $('.accordion').on('hide', function (e) {
+    $(this).find('.accordion-heading').not($(e.target)).removeClass('accordion-opened');
+  });
+
+//Función para validar si las password son iguales
+  function passwordIguales(value, element, param){
+    //var codEmpleado =$('#tbAcciones').attr('data-codpersonal');
+    var newpassword = $('#txtNewPass').val();
+    var repeatpassword = $('#txtRepeatPass').val();
+    if ((value !== newpassword !== repeatpassword) && value !== '') {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  $.validator.addMethod('passwordIguales', passwordIguales, $('#hdnPassEqual').val());
+
+  $('#frmChangePass').validate({
+    submitHandler: function(){
+      var str = $('#frmChangePass').serialize();
+
+      $.ajax({
+        beforeSend: function(){
+          // Verificamos si hay mensaje de error visible
+                  if($('#divPassError').is(':visible')){
+                     $('#divPassError').addClass('hide');
+                  }
+                  $('#ajaxLoader').removeClass('hide');
+                },
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                url:"includes/cliente.php",
+                data:str + "&accion=cambiarPass&id=" + Math.random(),
+                success: function(response){
+
+                // Verificar errores
+                if(response.respuesta == true){
+                  $('#divPassMod').removeClass('hide');
+                  
+                }else{
+                  $('#divPassError').removeClass('hide');
+                }
+
+                $('#ajaxLoader').addClass('hide');
+
+            }
+      });
+
+    },
+    highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+    errorElement: 'span',
+      errorClass: 'help-block',
+      errorPlacement: function(error, element) {
+          if(element.parent('.input-group').length) {
+              error.insertAfter(element.parent());
+          } else {
+              error.insertAfter(element);
+          }
+      },
+        rules: {
+          txtNewPass: {
+            passwordIguales: true,
+            required: true,
+            minlength: 5
+          },
+          txtRepeatPass: {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          txtNewPass: {
+            required: $('#hdnPassRequired').val(),
+            minlength: $('#hdnPassLength').val()
+          },
+          txtRepeatPass: {
+            required: $('#hdnPassRequired').val(),
+            minlength: $('#hdnPassLength').val()
+          }
+        } 
+  });
+
+  $('#divChangePass').on('click', '.cerrar', function () {
+    $('#txtNewPass').val("");
+    $('#txtRepeatPass').val("");
+    $('#divPassMod').addClass('hide');
+    $('#divPassError').addClass('hide');
+  });
+
+
+});
+</script>
+
+{% endblock %}
+

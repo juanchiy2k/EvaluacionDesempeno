@@ -1,0 +1,234 @@
+{# Heredando la plantilla principal #}
+
+{% extends 'default_layout.html'%}
+
+{% block language %}
+
+<div id="languages">
+  <a href="index.php?lang=es"><img src="images/es.png" /></a>
+  <a href="index.php?lang=en"><img src="images/en.png" /></a>
+</div>
+{% endblock %}
+
+{% block loginUser %}
+
+  <div class="container">
+
+    <div class="row col-md-6">
+        <div class="thumbnail right-caption">
+          <img class="col-md-4" src="images/mujeres.png" alt="">
+          <h4>{% set welcome = textos.welcome %} {% trans welcome %}</h4>
+          <p>{% set presentation = textos.presentation %} {% trans presentation %}</p>
+        </div>
+      </div>
+    <div class="col-md-1"></div>
+    <div class="row col-md-5">
+      <div class="thumbnail">
+        <form method="post" action="" id="formLogin" name="formLogin">
+          <div class="form-group">
+            <label for="txtUsrEmail" class="control-label usuario">{% set email = textos.email %} {% trans email %}</label>
+            <input type="email" id="txtUsrEmail" name="txtUsrEmail" placeholder="{% set email_pm = textos.email_pm %} {% trans email_pm %}" class="form-control required"/>
+          </div>
+          <div class="form-group">
+            <label for="txtUsrPass" class="control-label usuario">{% set password = textos.password %} {% trans password %}</label>
+            <input type="password" class="form-control" id="txtUsrPass" name="txtUsrPass" required class="form-control {required:true,rangelength: [10, 10]}" />
+          </div>
+          <div class="form-group">
+            <div class="">
+              <img alt="" src="images/ajax-loader.gif" id="ajaxLoader" class="hide">
+              <div class="alert alert-danger font-small hide" id="loginError"><strong>{% set inc_sign_in = textos.inc_sign_in %} {% trans inc_sign_in %}</strong></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="">
+              <button class="btn btn-small btn-danger" type="submit" id="btnLogin">{% set sign_in = textos.sign_in %} {% trans sign_in %}</button>
+            </div>
+          </div> 
+          <div style="word-wrap: break-word;">
+              <a href="" class="btn btn-link" id="recPass" data-toggle="modal" data-target="#myModal">{% set forgot_pass = textos.forgot_pass %} {% trans forgot_pass %}</a><br> 
+          </div> 
+        </form>
+      </div>
+    </div>
+  
+        
+  </div>
+
+     
+{% endblock %}
+
+
+{% block dialog %}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close cerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">{% set pass_rec = textos.pass_rec %} {% trans pass_rec %}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{% set pass_rec_text = textos.pass_rec_text %} {% trans pass_rec_text %}</p>
+        <form class="form-horizontal" id="formSendCode" name="formSendCode">
+          <div id="datosCorreo">
+            <label for="txtRecEmail">{% set email = textos.email %} {% trans email %}</label>
+            <span></span>
+            <input type="text" id="txtRecEmail" name="txtRecEmail" placeholder="{% set email_pm = textos.email_pm %} {% trans email_pm %}" class="form-control {required:true,email:true, maxlength:150}"/>
+          </div>
+          <div id="responseAjax" style="text-align:center;">
+            <img alt="" src="images/ajax-loader.gif" id="ajaxLoaderRecuperar" class="hide">
+            <div class="alert-danger font-small hide" id="divEmailError"><strong>{% set no_found_email = textos.no_found_email %} {% trans no_found_email %}</strong></div>
+            <div class="alert alert-success font-small hide" id="divEmailSended"><strong>{% set pass_sended = textos.pass_sended %} {% trans pass_sended %}</strong></div>
+          </div>
+          <div id="botonera" class="small-padding" style="text-align:center; padding-top: 5px;">
+            <button class="btn btn-small btn-danger" type="submit" id="btnCorreo">{% set next = textos.next %} {% trans next %}</button>
+            <button type="button" class="btn btn-small btn-danger hide cerrar" id="btnOK" data-dismiss="modal">{% set ok = textos.ok %} {% trans ok %}</button>
+          </div>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<input type="hidden" id="hdnEmailRequired" value="{% set email_req = textos.email_req %} {% trans email_req %}" >
+<input type="hidden" id="hdnEmailValid" value="{% set email_val = textos.email_val %} {% trans email_val %}" >
+{% endblock %}
+
+
+{% block extraCSS %}
+  <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.4.custom.min.css">
+{% endblock %}
+
+
+
+ {% block javascripts %}
+  <script src="js/jquery-validation-1.11.1/jquery.validate.min.js" type="text/javascript"></script>
+
+  <!--<script src="js/jquery/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>-->
+  <script src="js/jquery/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $(function(){
+      // Valiar el formulario
+      $('#formLogin').validate({
+        submitHandler: function(){
+          var str = $('#formLogin').serialize();
+
+
+          // Ejecutamos nuestro AJAX con jquery
+          $.ajax({
+            beforeSend: function(){
+                // Verificamos si hay mensaje de error visible
+                if($('#loginError').is(':visible')){
+                   $('#loginError').addClass('hide');
+                }
+                  
+                $('#ajaxLoader').removeClass('hide');
+            },
+            cache: false,
+            type: "POST",
+            dataType: "json",
+            url:"includes/cliente.php",
+            data:str + "&accion=login&id=" + Math.random(),
+            success: function(response){
+
+
+              // Verificar errores
+              if(response.respuesta == true){
+                window.location.href='index.php';
+              }else{
+                $('#loginError').removeClass('hide');
+              }
+
+              $('#ajaxLoader').addClass('hide');
+
+            },
+            error:function(){
+                alert('ERROR GENERAL DEL SISTEMA, INTENTE MAS TARDE');
+                $('#ajaxLoader').addClass('hide');
+            }
+          });
+
+          return false;
+
+        },
+        errorPlacement: function(error, element){
+           error.appendTo(element.prev("span").append());
+        }
+      });
+
+      // Validamos el formulario de recuperación de correo electrónico
+      $('#formSendCode').validate({
+          submitHandler: function(){
+            var formData = $('#formSendCode').serialize();
+
+            // ajax para ejecutar la recuperación de contraseña
+            $.ajax({
+              beforeSend: function(){
+                  // Verificamos si hay mensaje de error visible
+                  if($('#divEmailError').is(':visible')){
+                     $('#divEmailError').addClass('hide');
+                  }
+                    
+                  $('#ajaxLoaderRecuperar').removeClass('hide');
+              },
+              cache: false,
+              type: "POST",
+              dataType: "json",
+              url:"includes/cliente.php",
+              data:formData + "&accion=recuperaPass&id=" + Math.random(),
+              success: function(response){
+
+                if(response.respuesta == true){
+                  $('#divEmailSended').removeClass('hide');
+                  
+                  $('#btnCorreo').addClass('hide');
+                  $('#btnOK').removeClass('hide');
+                  
+
+                  $('#recuperaPass').dialog('close');
+                }
+                else{
+                  $('#divEmailError').removeClass('hide');
+                }
+                  
+                $('#ajaxLoaderRecuperar').addClass('hide');
+
+              },
+              error:function(){
+                  alert('ERROR GENERAL DEL SISTEMA, INTENTE MAS TARDE');
+                  $('#ajaxLoaderRecuperar').addClass('hide');
+              }
+            });
+            return false;
+          },
+          errorPlacement: function(error, element) {
+              error.appendTo(element.prev("span").append());
+          },
+          rules: {
+            txtRecEmail: {
+              required: true,
+              email: true
+            }
+          },
+          messages: {
+            txtRecEmail: {
+              required: $('#hdnEmailRequired').val(),
+              email:  $('#hdnEmailValid').val()
+            }
+          }
+      });
+
+
+    });
+    $('#myModal').on('click', '.cerrar', function () {
+        $('#txtRecEmail').val('');
+        $('#divEmailSended').addClass('hide');
+        $('#btnCorreo').removeClass('hide');
+        $('#btnOK').addClass('hide');
+    });
+
+  </script>
+
+  {% endblock %}
