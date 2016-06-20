@@ -15,12 +15,12 @@
   <div class="container">
 
     <div class="row col-md-6">
-        <div class="thumbnail right-caption">
-          <img class="col-md-4" src="images/mujeres.png" alt="">
-          <h4>{% set welcome = textos.welcome %} {% trans welcome %}</h4>
-          <p>{% set presentation = textos.presentation %} {% trans presentation %}</p>
-        </div>
+      <div class="thumbnail right-caption">
+        <img class="col-md-4" src="images/mujeres.png" alt="">
+        <h4>{% set welcome = textos.welcome %} {% trans welcome %}</h4>
+        <p>{% set presentation = textos.presentation %} {% trans presentation %}</p>
       </div>
+    </div>
     <div class="col-md-1"></div>
     <div class="row col-md-5">
       <div class="thumbnail">
@@ -44,9 +44,11 @@
               <button class="btn btn-small btn-danger" type="submit" id="btnLogin">{% set sign_in = textos.sign_in %} {% trans sign_in %}</button>
             </div>
           </div> 
-          <div style="word-wrap: break-word;">
-              <a href="" class="btn btn-link" id="recPass" data-toggle="modal" data-target="#myModal">{% set forgot_pass = textos.forgot_pass %} {% trans forgot_pass %}</a><br> 
-          </div> 
+          <div class="form-group">
+            <div>
+                <a href="" class="" id="recPass" data-toggle="modal" data-target="#myModal">{% set forgot_pass = textos.forgot_pass %} {% trans forgot_pass %}</a><br> 
+            </div> 
+          </div>
         </form>
       </div>
     </div>
