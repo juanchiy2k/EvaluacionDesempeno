@@ -1,0 +1,17 @@
+commit cbfaf4dc0cdf81a412735541bc3c3032aa67b463
+Author: Juan García Bauzá <juangarciabauza@gmail.com>
+Date:   Mon Jun 20 14:39:20 2016 -0300
+
+    Arreglar link que sale del div
+
+commit 4884f95d4d06617cb98725a2c43da9fe6a764196
+Author: Juan García Bauzá <juangarciabauza@gmail.com>
+Date:   Sun Jun 19 16:55:22 2016 -0300
+
+    Cambiamos la bandera de inglés
+
+commit 22f838280a196dde2432736d0708f83d68eb91be
+Author: Juan García Bauzá <juangarciabauza@gmail.com>
+Date:   Sun Jun 19 16:47:31 2016 -0300
+
+    Inicio el primer commit
